@@ -9,6 +9,12 @@ interface UserManagerMeta {
   timestamp: string;
 }
 
+/**
+ * Get UserManager historical data 
+ * @param {string} orderBy - Property to orderBy
+ * @param {OrderDirection} orderDirection - Order in asc or desc
+ * @returns {Promise} `{ id, totalStaked, totalFrozen, timestamp }[]`
+ */
 export async function fetchUserManagerMeta(
   orderBy: string = "timestamp",
   orderDirection: OrderDirection = OrderDirection.DESC

@@ -10,6 +10,12 @@ interface Deposit {
   marketsTotalSupply: string[];
 }
 
+/**
+ * Get AssetManager deposits historical data 
+ * @param {string} orderBy - Property to orderBy
+ * @param {OrderDirection} orderDirection - Order in asc or desc
+ * @returns {Promise} `{ id, token, amount, account, marketsTotalSupply }[]`
+ */
 export async function fetchDeposits(
   orderBy: string = "timestamp",
   orderDirection: OrderDirection = OrderDirection.DESC

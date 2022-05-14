@@ -11,6 +11,13 @@ interface Borrow {
   timestamp: string;
 }
 
+/**
+ * Get Accounts borrows historical data
+ * @param {string} orderBy - Property to orderBy
+ * @param {OrderDirection} orderDirection - Order in asc or desc
+ * @param {object} where - Where object e.g { account: "0x00" }
+ * @returns {Promise} `{ id, account, amount, fee, timestamp }[]`
+ */
 export async function fetchBorrows(
   orderBy: string = "timestamp",
   orderDirection: OrderDirection = OrderDirection.DESC,
@@ -42,6 +49,13 @@ export async function fetchBorrows(
   return fetchPages<Borrow>(query, "borrows");
 }
 
+/**
+ * Get Account borrows historical data
+ * @param {string} account - Account to get borrow historical data for 
+ * @param {string} orderBy - Property to orderBy
+ * @param {OrderDirection} orderDirection - Order in asc or desc
+ * @returns {Promise} `{ id, account, amount, fee, timestamp }[]`
+ */
 export async function fetchAccountBorrows(
   account: string,
   orderBy: string = "timestamp",

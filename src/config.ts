@@ -9,7 +9,7 @@ function createConfig() {
 
   return {
     set: (key: keyof Config, value: any) => (config[key] = value),
-    ...config,
+    get: (key: keyof Config) => config[key],
   };
 }
 

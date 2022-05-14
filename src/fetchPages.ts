@@ -6,7 +6,7 @@ export async function fetchPages<T>(
   query: (skip: number, first: number) => any,
   dataKey: string
 ): Promise<T[]> {
-  const chainId = config.chainId;
+  const chainId = config.get("chainId");
   const graphUrl = GRAPH_URLS[chainId];
 
   if (!graphUrl) {

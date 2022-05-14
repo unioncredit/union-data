@@ -7,6 +7,12 @@ import {
 } from "../data";
 import { fetchDeposits } from "../deposit";
 import { fetchAccountStakes } from "../stakers";
+import {
+  fetchAccountTrusted,
+  fetchAccountTrusting,
+  fetchAccountTrustRelationship,
+  fetchTrustlines,
+} from "../trustline";
 
 test("@method fetchUserManagerMeta", async () => {
   const results = await fetchUserManagerMeta();
@@ -102,6 +108,50 @@ test("@method fetchDeposits", async () => {
       "marketsTotalSupply",
     ]) {
       expect(Object.keys(row).includes(key)).toBe(true);
+    }
+  }
+});
+
+test("@method fetchTrustlines", async () => {
+  const results = await fetchTrustlines();
+  for (const row of results) {
+    for (const key of ["id", "staker", "borrower", "amount", "timestamp"]) {
+      expect(Object.keys(row).includes(key)).toBe(true);
+    }
+  }
+});
+
+test("@method fetchAccountTrusted", async () => {
+  const account = "0x1c92efdb6c924cb2acf7dceec29b7abb69ab58bc";
+  const results = await fetchAccountTrusted(account);
+  for (const row of results) {
+    for (const key of ["id", "staker", "borrower", "amount", "timestamp"]) {
+      expect(Object.keys(row).includes(key)).toBe(true);
+      expect(row.borrower).toEqual(account);
+    }
+  }
+});
+
+test("@method fetchAccountTrusted", async () => {
+  const account = "0x230d31eec85f4063a405b0f95bde509c0d0a8b5d";
+  const results = await fetchAccountTrusting(account);
+  for (const row of results) {
+    for (const key of ["id", "staker", "borrower", "amount", "timestamp"]) {
+      expect(Object.keys(row).includes(key)).toBe(true);
+      expect(row.staker).toEqual(account);
+    }
+  }
+});
+
+test("@method fetchAccountTrustRelationship", async () => {
+  const staker = "0x230d31eec85f4063a405b0f95bde509c0d0a8b5d";
+  const borrower = "0x1c92efdb6c924cb2acf7dceec29b7abb69ab58bc";
+  const results = await fetchAccountTrustRelationship(borrower, staker);
+  for (const row of results) {
+    for (const key of ["id", "staker", "borrower", "amount", "timestamp"]) {
+      expect(Object.keys(row).includes(key)).toBe(true);
+      expect(row.staker).toEqual(staker);
+      expect(row.borrower).toEqual(borrower);
     }
   }
 });

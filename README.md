@@ -6,9 +6,9 @@
 - [ ] user frozen
 - [x] user staked
 - [ ] user repays
-- [ ] Trustline data for a staker
-- [ ] Vouches data for a staker
-- [ ] transaction history for staker borrower (contacts page)
+- [x] Trustline data for a staker
+- [x] Vouches data for a staker
+- [x] transaction history for staker borrower (contacts page)
 - [ ] governance proposals
 - [ ] governance proposal history
 

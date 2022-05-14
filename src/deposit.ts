@@ -29,6 +29,7 @@ export async function fetchDeposits(
         token
         amount
         account
+        timestamp
         marketsTotalSupply
       }
     }

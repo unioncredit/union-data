@@ -2,9 +2,9 @@
 
 - [x] UserManager meta
 - [x] UToken meta
-- [ ] account borrows
+- [x] account borrows
 - [ ] user frozen
-- [ ] user staked
+- [x] user staked
 - [ ] user repays
 - [ ] Trustline data for a staker
 - [ ] Vouches data for a staker

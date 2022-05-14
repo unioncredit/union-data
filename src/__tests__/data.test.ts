@@ -1,12 +1,7 @@
-import { fetchAccountBorrows } from "../borrows";
-import {
-  fetchUserManagerMeta,
-  fetchUTokenMeta,
-  fetchStakers,
-  fetchBorrows,
-} from "../data";
+import { fetchUserManagerMeta, fetchUTokenMeta } from "../index";
+import { fetchAccountBorrows, fetchBorrows } from "../borrows";
 import { fetchDeposits } from "../deposit";
-import { fetchAccountStakes } from "../stakers";
+import { fetchAccountStakes, fetchStakers } from "../stakers";
 import {
   fetchAccountTrusted,
   fetchAccountTrusting,

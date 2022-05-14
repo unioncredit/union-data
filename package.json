@@ -1,12 +1,13 @@
 {
   "name": "@unioncredit/data",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
-  "main": "./out/index.js",
+  "main": "./lib/index.js",
   "scripts": {
     "build": "yarn tsc",
     "docs": "jsdoc2md ./lib/*.js",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "npm run build"
   },
   "author": "",
   "license": "ISC",

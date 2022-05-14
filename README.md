@@ -1,7 +1,7 @@
 # Union Data
 
-- [ ] UserManager meta
-- [ ] UToken meta
+- [x] UserManager meta
+- [x] UToken meta
 - [ ] account borrows
 - [ ] user frozen
 - [ ] user staked

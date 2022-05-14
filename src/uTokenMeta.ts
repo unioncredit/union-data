@@ -1,36 +1,46 @@
 import { request, gql } from "graphql-request";
 import { GRAPH_URL, OrderDirection } from "./constants";
 
-interface UserManagerMeta {
+interface UTokenMeta {
   id: string;
-  totalStaked: string;
-  totalFrozen: string;
+  totalBorrows: string;
+  totalSupply: string;
+  totalReserves: string;
+  totalRedeemable: string;
+  borrowRate: string;
+  supplyRate: string;
+  exchangeRate: string;
   timestamp: string;
 }
 
-export async function fetchUserManagerMeta(
+export async function fetchUTokenMeta(
   orderBy: string = "timestamp",
   orderDirection: OrderDirection = OrderDirection.DESC
-): Promise<UserManagerMeta[]> {
+): Promise<UTokenMeta[]> {
   const query = (skip: number, first: number) => gql`
     {
-      userManagerMetas(skip: ${skip}, first: ${first}, orderBy: ${orderBy}, orderDirection: ${
+      utokenMetas(skip: ${skip}, first: ${first}, orderBy: ${orderBy}, orderDirection: ${
     orderDirection === OrderDirection.ASC ? "asc" : "desc"
   }) {
         id
-        totalStaked
-        totalFrozen
+        totalBorrows
+        totalSupply
+        totalReserves
+        totalRedeemable
+        borrowRate
+        supplyRate
+        exchangeRate
         timestamp
       }
     }
   `;
 
   const pageSize = 100;
-  let result: UserManagerMeta[] = [];
+  let result: UTokenMeta[] = [];
 
   while (true) {
     const resp = await request(GRAPH_URL, query(0, pageSize));
-    const data = resp.userManagerMetas;
+    const data = resp.utokenMetas;
     result = [...result, ...data];
 
     if (data.length <= pageSize) {

@@ -1,4 +1,9 @@
-import { fetchUserManagerMeta, fetchUTokenMeta, fetchStakers } from "../data";
+import {
+  fetchUserManagerMeta,
+  fetchUTokenMeta,
+  fetchStakers,
+  fetchBorrows,
+} from "../data";
 
 test("@method fetchUserManagerMeta", async () => {
   const results = await fetchUserManagerMeta();
@@ -28,7 +33,7 @@ test("@method fetchUTokenMeta", async () => {
   }
 });
 
-test("@method fetchUTokenMeta", async () => {
+test("@method fetchStakers", async () => {
   const results = await fetchStakers();
   for (const row of results) {
     for (const key of [
@@ -40,6 +45,15 @@ test("@method fetchUTokenMeta", async () => {
       "stakedAmount",
       "timestamp",
     ]) {
+      expect(Object.keys(row).includes(key)).toBe(true);
+    }
+  }
+});
+
+test("@method fetchBorrows", async () => {
+  const results = await fetchBorrows();
+  for (const row of results) {
+    for (const key of ["id", "account", "amount", "fee", "timestamp"]) {
       expect(Object.keys(row).includes(key)).toBe(true);
     }
   }

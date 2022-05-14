@@ -15,8 +15,8 @@ enum OrderDirection {
 }
 
 export async function fetchUserManagerMeta(
-  orderBy: string,
-  orderDirection: OrderDirection
+  orderBy: string = "timestamp",
+  orderDirection: OrderDirection = OrderDirection.DESC
 ): Promise<UserManagerMeta[]> {
   const query = (skip: number, first: number) => gql`
     {

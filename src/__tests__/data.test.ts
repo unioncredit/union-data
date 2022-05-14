@@ -1,6 +1,10 @@
 import { fetchUserManagerMeta } from "../data";
 
-test("default", () => {
-  console.log(fetchUserManagerMeta);
-  expect(true).toBe(true);
+test("@method fetchUserManagerMeta", async () => {
+  const results = await fetchUserManagerMeta();
+  for (const row of results) {
+    for (const key of ["id", "totalStaked", "totalFrozen", "timestamp"]) {
+      expect(Object.keys(row).includes(key)).toBe(true);
+    }
+  }
 });

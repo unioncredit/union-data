@@ -5,6 +5,7 @@
   "main": "./out/index.js",
   "scripts": {
     "build": "yarn tsc",
+    "docs": "jsdoc2md ./lib/*.js",
     "test": "jest"
   },
   "author": "",
@@ -12,6 +13,7 @@
   "dependencies": {
     "graphql": "^16.5.0",
     "graphql-request": "^4.2.0",
+    "jsdoc-to-markdown": "^7.1.1",
     "typescript": "^4.6.4"
   },
   "devDependencies": {

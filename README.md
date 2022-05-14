@@ -14,6 +14,8 @@
 
 ## Installation
 
+[NPM package](https://www.npmjs.com/package/@unioncredit/data)
+
 ```
 npm install @unioncredit/data
 yarn add @unioncredit/data

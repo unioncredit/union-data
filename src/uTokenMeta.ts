@@ -1,5 +1,6 @@
-import { request, gql } from "graphql-request";
-import { GRAPH_URL, OrderDirection } from "./constants";
+import { gql } from "graphql-request";
+import { OrderDirection } from "./constants";
+import { fetchPages } from "./fetchPages";
 
 interface UTokenMeta {
   id: string;
@@ -35,18 +36,5 @@ export async function fetchUTokenMeta(
     }
   `;
 
-  const pageSize = 100;
-  let result: UTokenMeta[] = [];
-
-  while (true) {
-    const resp = await request(GRAPH_URL, query(0, pageSize));
-    const data = resp.utokenMetas;
-    result = [...result, ...data];
-
-    if (data.length <= pageSize) {
-      break;
-    }
-  }
-
-  return result;
+  return fetchPages<UTokenMeta>(query, "utokenMetas");
 }

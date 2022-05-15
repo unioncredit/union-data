@@ -8,6 +8,7 @@ import {
   fetchAccountTrustRelationship,
   fetchTrustlines,
 } from "../trustline";
+import { fetchRepays } from "../repay";
 
 test("@method fetchUserManagerMeta", async () => {
   const results = await fetchUserManagerMeta();
@@ -76,6 +77,15 @@ test("@method fetchBorrows", async () => {
   const results = await fetchBorrows();
   for (const row of results) {
     for (const key of ["id", "account", "amount", "fee", "timestamp"]) {
+      expect(Object.keys(row).includes(key)).toBe(true);
+    }
+  }
+});
+
+test("@method fetchRepays", async () => {
+  const results = await fetchRepays();
+  for (const row of results) {
+    for (const key of ["id", "account", "amount", "timestamp"]) {
       expect(Object.keys(row).includes(key)).toBe(true);
     }
   }

@@ -9,6 +9,7 @@ import {
   fetchTrustlines,
 } from "../trustline";
 import { fetchRepays } from "../repay";
+import { fetchMemberApplications } from "../memberApplication";
 
 test("@method fetchUserManagerMeta", async () => {
   const results = await fetchUserManagerMeta();
@@ -157,6 +158,15 @@ test("@method fetchAccountTrustRelationship", async () => {
       expect(Object.keys(row).includes(key)).toBe(true);
       expect(row.staker).toEqual(staker);
       expect(row.borrower).toEqual(borrower);
+    }
+  }
+});
+
+test("@method fetchMemberApplications", async () => {
+  const results = await fetchMemberApplications();
+  for (const row of results) {
+    for (const key of ["id", "staker", "timestamp"]) {
+      expect(Object.keys(row).includes(key)).toBe(true);
     }
   }
 });

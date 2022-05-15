@@ -55,7 +55,7 @@ export async function fetchRepays(
  * @param {OrderDirection} orderDirection - Order in asc or desc
  * @returns {Promise} `{ id, account, amount, fee, timestamp }[]`
  */
-export async function fetchAccountBorrows(
+export async function fetchAccountRepays(
   account: string,
   orderBy: string = "timestamp",
   orderDirection: OrderDirection = OrderDirection.DESC

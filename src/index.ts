@@ -5,3 +5,5 @@ export * from "./borrows";
 export * from "./deposit";
 export * from "./trustline";
 export * from "./config";
+export * from "./repay";
+export * from "./memberApplication";

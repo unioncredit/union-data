@@ -6,10 +6,9 @@ import { objectToWhere } from "./utils";
 interface Borrower {
   id: string;
   account: string;
-  totalLockedStake: string;
-  totalFrozen: string;
-  creditLimit: string;
-  stakedAmount: string;
+  totalBorrowed: string;
+  totalOwed: string;
+  lastRepay: string;
   timestamp: string;
 }
 
@@ -18,7 +17,7 @@ interface Borrower {
  * @param {string} orderBy - Property to orderBy
  * @param {OrderDirection} orderDirection - Order in asc or desc
  * @param {object} where - Where object e.g { account: "0x00" }
- * @returns {Promise} Promise of `{}[]`
+ * @returns {Promise} Promise of `{ id, account, totalBorrowed, totalOwed, totalRepay, timestamp }[]`
  */
 export async function fetchBorrowers(
   orderBy: string = "timestamp",
@@ -57,7 +56,7 @@ export async function fetchBorrowers(
  * Get borrower data for single account
  * @param {string} orderBy - Property to orderBy
  * @param {OrderDirection} orderDirection - Order in asc or desc
- * @returns {Promise} Promise of `{}[]`
+ * @returns {Promise} Promise of `{ id, account, totalBorrowed, totalOwed, totalRepay, timestamp }[]`
  */
 export async function fetchBorrower(
   account: string,
@@ -65,4 +64,21 @@ export async function fetchBorrower(
   orderDirection: OrderDirection = OrderDirection.DESC
 ): Promise<Borrower[]> {
   return fetchBorrowers(orderBy, orderDirection, { account });
+}
+
+/**
+ * Get borrower status `isOverdue`
+ * @param {Borrower[]} borrowers The borrowers
+ * @param {String} overdueBlocks Amount of blocks until overdue
+ * @param {String} currentBlock Current block
+ */
+export function getBorrowersStatus(
+  borrowers: Borrower[],
+  overdueBlocks: string,
+  currentBlock: string
+) {
+  return borrowers.map((borrower) => ({
+    ...borrower,
+    isOverdue: borrower.lastRepay + overdueBlocks < currentBlock,
+  }));
 }

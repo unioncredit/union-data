@@ -3,26 +3,28 @@ import { OrderDirection } from "./constants";
 import { fetchPages } from "./fetchPages";
 import { objectToWhere } from "./utils";
 
-interface Repay {
+interface Borrower {
   id: string;
   account: string;
-  amount: string;
-  fee: string;
+  totalLockedStake: string;
+  totalFrozen: string;
+  creditLimit: string;
+  stakedAmount: string;
   timestamp: string;
 }
 
 /**
- * Get All accounts repays historical data
+ * Get all borrowers data
  * @param {string} orderBy - Property to orderBy
  * @param {OrderDirection} orderDirection - Order in asc or desc
  * @param {object} where - Where object e.g { account: "0x00" }
- * @returns {Promise} Promise of `{ id, account, amount, fee, timestamp }[]`
+ * @returns {Promise} Promise of `{}[]`
  */
-export async function fetchRepays(
+export async function fetchBorrowers(
   orderBy: string = "timestamp",
   orderDirection: OrderDirection = OrderDirection.DESC,
   where?: { [key: string]: string }
-): Promise<Repay[]> {
+): Promise<Borrower[]> {
   const orderDirectionStr =
     orderDirection === OrderDirection.ASC ? "asc" : "desc";
 
@@ -30,35 +32,37 @@ export async function fetchRepays(
 
   const query = (skip: number, first: number) => gql`
     {
-      repays(
+      borrowers(
         skip: ${skip}, 
         first: ${first}, 
         orderBy: ${orderBy}, 
         orderDirection: ${orderDirectionStr}, 
         ${whereStr}
-      ) {
-        id
-        account
-        amount
-        timestamp
-      }
+      )
+    {         
+      id
+      account
+      totalBorrowed
+      totalOwed
+      lastRepay
+      timestamp
     }
+  }
   `;
 
-  return fetchPages<Repay>(query, "repays");
+  return fetchPages<Borrower>(query, "borrowers");
 }
 
 /**
- * Get Account repays historical data
- * @param {string} account - Account to get repay historical data for
+ * Get borrower data for single account
  * @param {string} orderBy - Property to orderBy
  * @param {OrderDirection} orderDirection - Order in asc or desc
- * @returns {Promise} Promise of `{ id, account, amount, fee, timestamp }[]`
+ * @returns {Promise} Promise of `{}[]`
  */
-export async function fetchAccountRepays(
+export async function fetchBorrower(
   account: string,
   orderBy: string = "timestamp",
   orderDirection: OrderDirection = OrderDirection.DESC
-): Promise<Repay[]> {
-  return fetchRepays(orderBy, orderDirection, { account });
+): Promise<Borrower[]> {
+  return fetchBorrowers(orderBy, orderDirection, { account });
 }

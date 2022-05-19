@@ -14,11 +14,11 @@ interface Staker {
 }
 
 /**
- * Get stakers historical data
+ * Get all stakers historical data
  * @param {string} orderBy - Property to orderBy
  * @param {OrderDirection} orderDirection - Order in asc or desc
  * @param {object} where - Where object e.g { account: "0x00" }
- * @returns {Promise} `{ id, account, totalLockedStake, totalFrozen, creditLimit, stakedAmount, timestamp }[]`
+ * @returns {Promise} Promise of `{ id, account, totalLockedStake, totalFrozen, creditLimit, stakedAmount, timestamp }[]`
  */
 export async function fetchStakers(
   orderBy: string = "timestamp",
@@ -58,7 +58,7 @@ export async function fetchStakers(
  * Get staker historical data for single account
  * @param {string} orderBy - Property to orderBy
  * @param {OrderDirection} orderDirection - Order in asc or desc
- * @returns {Promise} `{ id, account, totalLockedStake, totalFrozen, creditLimit, stakedAmount, timestamp }[]`
+ * @returns {Promise} Promise of `{ id, account, totalLockedStake, totalFrozen, creditLimit, stakedAmount, timestamp }[]`
  */
 export async function fetchAccountStakes(
   account: string,

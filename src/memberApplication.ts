@@ -13,7 +13,7 @@ interface MemberApplication {
  * Get MemberApplications historical data
  * @param {string} orderBy - Property to orderBy
  * @param {OrderDirection} orderDirection - Order in asc or desc
- * @returns {Promise} `{ id, staker, applicant, timestamp }[]`
+ * @returns {Promise} Promise of `{ id, staker, applicant, timestamp }[]`
  */
 export async function fetchMemberApplications(
   orderBy: string = "timestamp",

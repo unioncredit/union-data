@@ -17,7 +17,7 @@ interface Trustline {
  * @param {string} orderBy - Property to orderBy
  * @param {OrderDirection} orderDirection - Order in asc or desc
  * @param {object} where - Where object e.g `{ staker: "0x00" }`
- * @returns {Promise} `{ id, staker, borrower, amount, timestamp }[]`
+ * @returns {Promise} Promise of `{ id, staker, borrower, amount, timestamp }[]`
  */
 export async function fetchTrustlines(
   orderBy: string = "timestamp",
@@ -55,7 +55,7 @@ export async function fetchTrustlines(
  * @param {string} account - Account to lookup
  * @param {string} orderBy - Property to orderBy
  * @param {OrderDirection} orderDirection - Order in asc or desc
- * @returns {Promise} `{ id, staker, borrower, amount, timestamp }[]`
+ * @returns {Promise} Promise of `{ id, staker, borrower, amount, timestamp }[]`
  */
 export async function fetchAccountTrusted(
   account: string,
@@ -70,7 +70,7 @@ export async function fetchAccountTrusted(
  * @param {string} account - Account to lookup
  * @param {string} orderBy - Property to orderBy
  * @param {OrderDirection} orderDirection - Order in asc or desc
- * @returns {Promise} `{ id, staker, borrower, amount, timestamp }[]`
+ * @returns {Promise} Promise of `{ id, staker, borrower, amount, timestamp }[]`
  */
 export async function fetchAccountTrusting(
   account: string,
@@ -86,7 +86,7 @@ export async function fetchAccountTrusting(
  * @param {string} staker - Account to lookup
  * @param {string} orderBy - Property to orderBy
  * @param {OrderDirection} orderDirection - Order in asc or desc
- * @returns {Promise} `{ id, staker, borrower, amount, timestamp }[]`
+ * @returns {Promise} Promise of `{ id, staker, borrower, amount, timestamp }[]`
  */
 export async function fetchAccountTrustRelationship(
   borrower: string,

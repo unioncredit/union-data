@@ -10,6 +10,7 @@ import {
 } from "../trustline";
 import { fetchRepays } from "../repay";
 import { fetchMemberApplications } from "../memberApplication";
+import { fetchBorrowers } from "../borrowers";
 
 test("@method fetchUserManagerMeta", async () => {
   const results = await fetchUserManagerMeta();
@@ -166,6 +167,22 @@ test("@method fetchMemberApplications", async () => {
   const results = await fetchMemberApplications();
   for (const row of results) {
     for (const key of ["id", "staker", "timestamp"]) {
+      expect(Object.keys(row).includes(key)).toBe(true);
+    }
+  }
+});
+
+test("@method fetchBorrowers", async () => {
+  const results = await fetchBorrowers();
+  for (const row of results) {
+    for (const key of [
+      "id",
+      "account",
+      "totalBorrowed",
+      "totalOwed",
+      "lastRepay",
+      "timestamp",
+    ]) {
       expect(Object.keys(row).includes(key)).toBe(true);
     }
   }

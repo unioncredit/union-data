@@ -7,3 +7,4 @@ export * from "./trustline";
 export * from "./config";
 export * from "./repay";
 export * from "./memberApplication";
+export * from "./borrowers";

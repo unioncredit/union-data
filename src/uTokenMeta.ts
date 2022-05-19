@@ -18,7 +18,7 @@ interface UTokenMeta {
  * Get UserManager historical state
  * @param {string} orderBy - Property to orderBy
  * @param {OrderDirection} orderDirection - Order in asc or desc
- * @returns {Promise} `{ id, totalBorrows, totalSupply, totalReserves, totalRedeemable, borrowRate, supplyRate, exchangeRate, timestamp }`
+ * @returns {Promise} Promise of `{ id, totalBorrows, totalSupply, totalReserves, totalRedeemable, borrowRate, supplyRate, exchangeRate, timestamp }`
  */
 export async function fetchUTokenMeta(
   orderBy: string = "timestamp",

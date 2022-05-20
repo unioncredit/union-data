@@ -77,6 +77,8 @@ export function getBorrowersStatus(
 ) {
   return borrowers.map((borrower) => ({
     ...borrower,
-    isOverdue: borrower.lastRepay + overdueBlocks < currentBlock,
+    isOverdue:
+      Number(borrower.lastRepay) + Number(overdueBlocks.toString()) <
+      Number(currentBlock.toString()),
   }));
 }

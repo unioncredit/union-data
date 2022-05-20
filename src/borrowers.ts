@@ -7,7 +7,6 @@ interface Borrower {
   id: string;
   account: string;
   totalBorrowed: string;
-  totalOwed: string;
   lastRepay: string;
   timestamp: string;
 }
@@ -17,7 +16,7 @@ interface Borrower {
  * @param {string} orderBy - Property to orderBy
  * @param {OrderDirection} orderDirection - Order in asc or desc
  * @param {object} where - Where object e.g { account: "0x00" }
- * @returns {Promise} Promise of `{ id, account, totalBorrowed, totalOwed, totalRepay, timestamp }[]`
+ * @returns {Promise} Promise of `{ id, account, totalBorrowed, totalRepay, timestamp }[]`
  */
 export async function fetchBorrowers(
   orderBy: string = "timestamp",
@@ -42,7 +41,6 @@ export async function fetchBorrowers(
       id
       account
       totalBorrowed
-      totalOwed
       lastRepay
       timestamp
     }
@@ -56,7 +54,7 @@ export async function fetchBorrowers(
  * Get borrower data for single account
  * @param {string} orderBy - Property to orderBy
  * @param {OrderDirection} orderDirection - Order in asc or desc
- * @returns {Promise} Promise of `{ id, account, totalBorrowed, totalOwed, totalRepay, timestamp }[]`
+ * @returns {Promise} Promise of `{ id, account, totalBorrowed, totalRepay, timestamp }[]`
  */
 export async function fetchBorrower(
   account: string,

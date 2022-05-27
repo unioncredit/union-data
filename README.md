@@ -1,23 +1,13 @@
 # Union Data
 
-- [x] UserManager meta
-- [x] UToken meta
-- [x] account borrows
-- [ ] user frozen
-- [x] user staked
-- [ ] user repays
-- [x] Trustline data for a staker
-- [x] Vouches data for a staker
-- [x] transaction history for staker borrower (contacts page)
-- [ ] governance proposals
-- [ ] governance proposal history
+[![npm version](https://badge.fury.io/js/@unioncredit%2Fdata.svg)](https://badge.fury.io/js/@unioncredit%2Fdata)
 
-## Installation
+A javascript library for fetching data about Union from the graphQL enpoints hosting on [The Graph](https://thegraph.com/hosted-service)
 
-[NPM package](https://www.npmjs.com/package/@unioncredit/data)
+
+## Usage
 
 ```
-npm install @unioncredit/data
 yarn add @unioncredit/data
 ```
 

@@ -7,6 +7,7 @@ import {
   fetchAccountTrusting,
   fetchAccountTrustRelationship,
   fetchTrustlines,
+  fetchCancelTrusted,
 } from "../trustline";
 import { fetchRepays } from "../repay";
 import { fetchMemberApplications } from "../memberApplication";
@@ -123,6 +124,16 @@ test("@method fetchTrustlines", async () => {
   const results = await fetchTrustlines();
   for (const row of results) {
     for (const key of ["id", "staker", "borrower", "amount", "timestamp"]) {
+      expect(Object.keys(row).includes(key)).toBe(true);
+    }
+  }
+});
+
+test("@method fetchCancelTrusted", async () => {
+  const results = await fetchCancelTrusted();
+  console.log(results);
+  for (const row of results) {
+    for (const key of ["id", "staker", "borrower", "timestamp"]) {
       expect(Object.keys(row).includes(key)).toBe(true);
     }
   }

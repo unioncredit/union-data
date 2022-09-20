@@ -11,6 +11,13 @@ interface Trustline {
   timestamp: string;
 }
 
+interface CancelTrustline {
+  id: string;
+  staker: string;
+  borrower: string;
+  timestamp: string;
+}
+
 /**
  * Get trustline historical data. when updateTrust is called on the UserManager
  * this trustline data is recorded
@@ -48,6 +55,44 @@ export async function fetchTrustlines(
   `;
 
   return fetchPages<Trustline>(query, "trustLines");
+}
+
+/**
+ * Get cancel trustline historical data. when cancelVouch is called on the UserManager
+ * this CancelTrusted data is recorded
+ * @param {string} orderBy - Property to orderBy
+ * @param {OrderDirection} orderDirection - Order in asc or desc
+ * @param {object} where - Where object e.g `{ staker: "0x00" }`
+ * @returns {Promise} Promise of `{ id, staker, borrower, amount, timestamp }[]`
+ */
+export async function fetchCancelTrusted(
+  orderBy: string = "timestamp",
+  orderDirection: OrderDirection = OrderDirection.DESC,
+  where?: { [key: string]: string }
+): Promise<CancelTrustline[]> {
+  const orderDirectionStr =
+    orderDirection === OrderDirection.ASC ? "asc" : "desc";
+
+  const whereStr = objectToWhere(where);
+
+  const query = (skip: number, first: number) => gql`
+    {
+      vouchCancellations(
+        skip: ${skip}, 
+        first: ${first}, 
+        orderBy: ${orderBy}, 
+        orderDirection: ${orderDirectionStr}, 
+        ${whereStr}
+      ) {
+        id
+        staker
+        borrower
+        timestamp
+      }
+    }
+  `;
+
+  return fetchPages<CancelTrustline>(query, "vouchCancellations");
 }
 
 /**

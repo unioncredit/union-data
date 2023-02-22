@@ -12,6 +12,7 @@ import {
 import { fetchRepays } from "../repay";
 import { fetchMemberApplications } from "../memberApplication";
 import { fetchBorrowers } from "../borrowers";
+import { fetchDebtWriteOffs } from "../debtWriteoffs";
 
 test("@method fetchUserManagerMeta", async () => {
   const results = await fetchUserManagerMeta();
@@ -190,6 +191,21 @@ test("@method fetchBorrowers", async () => {
       "account",
       "totalBorrowed",
       "lastRepay",
+      "timestamp",
+    ]) {
+      expect(Object.keys(row).includes(key)).toBe(true);
+    }
+  }
+});
+
+test("@method fetchDebtWriteOffs", async () => {
+  const results = await fetchDebtWriteOffs();
+  for (const row of results) {
+    for (const key of [
+      "id",
+      "staker",
+      "borrower",
+      "amount",
       "timestamp",
     ]) {
       expect(Object.keys(row).includes(key)).toBe(true);

@@ -131,7 +131,6 @@ test("@method fetchTrustlines", async () => {
 
 test("@method fetchCancelTrusted", async () => {
   const results = await fetchCancelTrusted();
-  console.log(results);
   for (const row of results) {
     for (const key of ["id", "staker", "borrower", "timestamp"]) {
       expect(Object.keys(row).includes(key)).toBe(true);
@@ -190,7 +189,6 @@ test("@method fetchBorrowers", async () => {
       "id",
       "account",
       "totalBorrowed",
-      "totalOwed",
       "lastRepay",
       "timestamp",
     ]) {

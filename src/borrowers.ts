@@ -3,6 +3,10 @@ import { OrderDirection } from "./constants";
 import { fetchPages } from "./fetchPages";
 import { objectToWhere } from "./utils";
 
+interface BorrowerAddress {
+  account: string;
+}
+
 interface Borrower {
   id: string;
   account: string;
@@ -48,6 +52,23 @@ export async function fetchBorrowers(
   `;
 
   return fetchPages<Borrower>(query, "borrowers");
+}
+
+export async function fetchBorrowerAddresses(): Promise<string[]> {
+  const query = (skip: number, first: number) => gql`
+      {
+          borrowers(
+              skip: ${skip},
+              first: ${first}
+          )
+          {
+              account
+          }
+      }
+  `;
+
+  const borrowers = await fetchPages<BorrowerAddress>(query, "borrowers");
+  return borrowers.map(b => b.account);
 }
 
 /**

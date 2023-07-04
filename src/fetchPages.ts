@@ -18,7 +18,7 @@ export async function fetchPages<T>(
   let result: T[] = [];
 
   while (true) {
-    const resp = await request(graphUrl, query(page, pageSize));
+    const resp = await request(graphUrl, query(page * pageSize, pageSize));
     const data = resp[dataKey];
     result = [...result, ...data];
     page++;

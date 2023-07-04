@@ -3,6 +3,10 @@ import { OrderDirection } from "./constants";
 import { fetchPages } from "./fetchPages";
 import { objectToWhere } from "./utils";
 
+interface StakerAddress {
+  account: string;
+}
+
 interface Staker {
   id: string;
   account: string;
@@ -52,6 +56,27 @@ export async function fetchStakers(
   `;
 
   return fetchPages<Staker>(query, "stakers");
+}
+
+/**
+ * Get all staker addresses
+ * @returns {Promise} Promise of string[]`
+ */
+export async function fetchStakerAddresses(): Promise<string[]> {
+  const query = (skip: number, first: number) => gql`
+      {
+          stakers(
+              skip: ${skip},
+              first: ${first}
+          )
+          {
+              account
+          }
+      }
+  `;
+
+  const stakers = await fetchPages<StakerAddress>(query, "stakers");
+  return stakers.map(s => s.account);
 }
 
 /**

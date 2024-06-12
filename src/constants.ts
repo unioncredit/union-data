@@ -4,10 +4,7 @@ export enum OrderDirection {
 }
 
 export const GRAPH_URLS: { [key: number]: string } = {
-  1: "https://api.thegraph.com/subgraphs/name/geraldhost/union",
-  5: "https://api.thegraph.com/subgraphs/name/geraldhost/union-goerli",
-  10: "https://api.thegraph.com/subgraphs/name/geraldhost/union-optimism",
-  42: "https://api.thegraph.com/subgraphs/name/geraldhost/union-kovan",
-  420: "https://api.thegraph.com/subgraphs/name/geraldhost/union-v2-goerli",
-  42161: "https://api.thegraph.com/subgraphs/name/geraldhost/union-arbitrum",
+  1: "https://api.studio.thegraph.com/query/78581/union-v1-mainnet/1.0.0",
+  10: "https://api.studio.thegraph.com/proxy/78581/union-finance/2.0.1",
+  42161: "https://api.studio.thegraph.com/query/78581/union-v1-arbitrum/1.0.0",
 };
